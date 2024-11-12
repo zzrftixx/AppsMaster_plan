@@ -24,84 +24,77 @@ class _PlanScreenState extends State<PlanScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Master Plan Muh Andra Ariesfi')),
-      body: _buildList(),
-      floatingActionButton: _buildAddTaskButton(context), // Pass context here
+      appBar: AppBar(title: const Text('Master Plan')),
+      body: ValueListenableBuilder<Plan>(
+        valueListenable: PlanProvider.of(context),
+        builder: (context, plan, child) {
+          return Column(
+            children: [
+              Expanded(
+                  child: _buildList(plan)), // Wrap _buildList with Expanded
+              SafeArea(
+                  child: Text(plan
+                      .completenessMessage)), // Add SafeArea with completenessMessage
+            ],
+          );
+        },
+      ),
+      floatingActionButton: _buildAddTaskButton(context),
     );
   }
 
   Widget _buildAddTaskButton(BuildContext context) {
-    ValueNotifier<Plan> planNotifier =
-        PlanProvider.of(context); // Ambil Plan dari PlanProvider
+    ValueNotifier<Plan> planNotifier = PlanProvider.of(context);
     return FloatingActionButton(
       child: const Icon(Icons.add),
       onPressed: () {
-        Plan currentPlan = planNotifier.value; // Ambil nilai Plan saat ini
+        Plan currentPlan = planNotifier.value;
         planNotifier.value = Plan(
           name: currentPlan.name,
-          tasks: List<Task>.from(currentPlan.tasks)
-            ..add(const Task()), // Tambahkan tugas baru
+          tasks: List<Task>.from(currentPlan.tasks)..add(const Task()),
         );
       },
     );
   }
 
-  Widget _buildList() {
-    ValueNotifier<Plan> planNotifier =
-        PlanProvider.of(context); // Ambil Plan dari PlanProvider
-    return ValueListenableBuilder<Plan>(
-      valueListenable: planNotifier,
-      builder: (context, plan, child) {
-        return ListView.builder(
-          controller: scrollController,
-          keyboardDismissBehavior:
-              Theme.of(context).platform == TargetPlatform.iOS
-                  ? ScrollViewKeyboardDismissBehavior.onDrag
-                  : ScrollViewKeyboardDismissBehavior.manual,
-          itemCount: plan.tasks.length,
-          itemBuilder: (context, index) =>
-              _buildTaskTile(plan.tasks[index], index),
-        );
-      },
+  Widget _buildList(Plan plan) {
+    return ListView.builder(
+      controller: scrollController,
+      itemCount: plan.tasks.length,
+      itemBuilder: (context, index) =>
+          _buildTaskTile(plan.tasks[index], index, context),
     );
   }
 
-  Widget _buildTaskTile(Task task, int index) {
+  Widget _buildTaskTile(Task task, int index, BuildContext context) {
+    ValueNotifier<Plan> planNotifier = PlanProvider.of(context);
     return ListTile(
       leading: Checkbox(
         value: task.complete,
         onChanged: (selected) {
-          ValueNotifier<Plan> planNotifier =
-              PlanProvider.of(context); // Ambil Plan dari PlanProvider
-          setState(() {
-            Plan currentPlan = planNotifier.value; // Ambil nilai Plan saat ini
-            planNotifier.value = Plan(
-              name: currentPlan.name,
-              tasks: List<Task>.from(currentPlan.tasks)
-                ..[index] = Task(
-                  description: task.description,
-                  complete: selected ?? false,
-                ),
-            );
-          });
+          Plan currentPlan = planNotifier.value;
+          planNotifier.value = Plan(
+            name: currentPlan.name,
+            tasks: List<Task>.from(currentPlan.tasks)
+              ..[index] = Task(
+                description: task.description,
+                complete: selected ?? false,
+              ),
+          );
         },
       ),
       title: TextFormField(
         initialValue: task.description,
         onChanged: (text) {
-          ValueNotifier<Plan> planNotifier =
-              PlanProvider.of(context); // Ambil Plan dari PlanProvider
-          setState(() {
-            Plan currentPlan = planNotifier.value; // Ambil nilai Plan saat ini
-            planNotifier.value = Plan(
-              name: currentPlan.name,
-              tasks: List<Task>.from(currentPlan.tasks)
-                ..[index] = Task(
-                  description: text,
-                  complete: task.complete,
-                ),
-            );
-          });
+          Plan currentPlan = planNotifier.value;
+          planNotifier.value = Plan(
+            name: currentPlan.name,
+            tasks: List<Task>.from(currentPlan.tasks)
+              ..[index] = Task(
+                description: text,
+                complete: task.complete,
+              ),
+          );
         },
       ),
     );

@@ -37,8 +37,15 @@ cd flutter_note_apps
 flutter run id chrome
 ```
 Run atau tekan F5 untuk melihat hasil aplikasi yang Anda telah buat. 
+<div style="align-items: center; width: 1250px;">
 
-![result build](assets/WhatsApp%20Video%202024-11-12%20at%2011.00.21_ff5b249c.gif)
+![result build](assets/WhatsAppVideo2024-11-12at11.00.22_41bf6c7f-ezgif.com-video-to-gif-converter.gif)
+
+</div>
+
+
+
+![code build](assets/1%20(1).png)
 
 #### Jelaskan maksud dari langkah 4 pada praktikum tersebut! Mengapa dilakukan demikian?
 
@@ -90,4 +97,10 @@ Kesimpulan
 
 initState dan dispose adalah dua metode yang sangat penting dalam lifecycle stateful widget di Flutter. Dengan memahami fungsi dari kedua metode ini, kita dapat menulis kode yang lebih efisien, aman, dan terkelola dengan baik. "
 
+
+<div style="align-items: center;">
+
+![result build](assets/ScreenRecording2024-11-12111105-ezgif.com-video-to-gif-converter.gif)
+
+</div>
 
