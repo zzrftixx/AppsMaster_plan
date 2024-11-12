@@ -29,5 +29,16 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+### To run on Android, be sure you have built the module first:
+
+```bash
+cd flutter_note_apps
+
+flutter run id chrome
+```
+Run atau tekan F5 untuk melihat hasil aplikasi yang Anda telah buat. 
+
 ![code build](assets/1%20(1).png)
+
 ![result build](assets/1%20(2).png)
+
