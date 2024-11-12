@@ -38,9 +38,7 @@ flutter run id chrome
 ```
 Run atau tekan F5 untuk melihat hasil aplikasi yang Anda telah buat. 
 
-![code build](assets/1%20(1).png)
-
-![result build](assets/1%20(2).png)
+![result build](assets/WhatsApp%20Video%202024-11-12%20at%2011.00.21_ff5b249c.gif)
 
 #### Jelaskan maksud dari langkah 4 pada praktikum tersebut! Mengapa dilakukan demikian?
 
