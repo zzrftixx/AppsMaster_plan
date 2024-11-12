@@ -111,3 +111,8 @@ initState dan dispose adalah dua metode yang sangat penting dalam lifecycle stat
 #### Jelaskan maksud dari method di langkah 3 pada praktikum tersebut! Mengapa dilakukan demikian?
 " Metode completedCount dan completenessMessage pada model Plan berfungsi untuk menghitung jumlah tugas yang telah selesai dan memberikan informasi persentase penyelesaian secara ringkas. Mengapa hal ini dilakukan? Dengan adanya dua metode ini, kita dapat dengan mudah mendapatkan informasi mengenai progres penyelesaian suatu rencana tanpa perlu melakukan perhitungan yang rumit di setiap bagian kode yang membutuhkan data tersebut. Informasi ini sangat berguna untuk ditampilkan dalam tampilan aplikasi, misalnya dalam bentuk progress bar atau teks deskriptif. "
 
+![build](assets/WhatsApp%20Video%202024-11-13%20at%2003.13.06_48dba1ec.gif)
+
+#### Berdasarkan Praktikum 3 yang telah Anda lakukan, jelaskan maksud dari gambar diagram berikut ini!
+
+Diagram tersebut mengilustrasikan konsep navigasi dan pengelolaan state dalam aplikasi Flutter. Ketika pengguna berpindah dari PlanCreatorScreen ke PlanScreen, terjadi perubahan pada struktur widget tree aplikasi. Argumen plan yang bersifat final pada konstruktor PlanScreen berperan krusial dalam menyalurkan data rencana dari layar sebelumnya ke layar saat ini. Hal ini memungkinkan PlanScreen untuk menampilkan informasi yang spesifik terkait rencana yang telah dipilih. WidgetProvider yang mungkin ada pada level atas dalam widget tree dapat digunakan untuk berbagi data secara global, namun dalam kasus ini, meneruskan data secara eksplisit melalui argumen konstruktor merupakan pendekatan yang lebih langsung dan efisien.
